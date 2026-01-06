@@ -48,7 +48,7 @@ public class ChessMatch {
         placeNewPiece('g', 1, new Knight(board, Color.WHITE));
         placeNewPiece('h', 1, new Rook(board, Color.WHITE));
         for (int i = 0; i < 8; i++){
-            placeNewPiece((char)('a' + i), 2, new Pawn(board, Color.BLACK));
+            placeNewPiece((char)('a' + i), 2, new Pawn(board, Color.WHITE));
         }
 
     }
