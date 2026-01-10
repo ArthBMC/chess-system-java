@@ -48,7 +48,7 @@ public class ChessMatch {
         for (int i = 0; i < board.getRows(); i++){
             for (int j = 0; j < board.getColumns(); j++) {
                 mat[i][j] = (ChessPiece) board.piece(i, j);
-            }
+              }
         }
         return mat;
     }
@@ -139,6 +139,7 @@ public class ChessMatch {
 
     private Piece makeMove (Position source, Position target){
         Piece p = board.removePiece(source);
+        ((ChessPiece) p).increseMoveCount();
         Piece capturedPiece = board.removePiece(target);
         board.placePiece(p, target);
         if (capturedPiece != null) {
@@ -150,6 +151,7 @@ public class ChessMatch {
 
     private void undoMove (Position source, Position target, Piece capturedPiece){
         Piece p = board.removePiece(target);
+        ((ChessPiece) p).decreaseMoveCount(); 
         board.placePiece(p, source);
 
         if (capturedPiece != null){
