@@ -1,17 +1,14 @@
 package application;
 
-import boardgame.Piece;
 import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class UI {
 
@@ -44,7 +41,7 @@ public class UI {
 
     public static ChessPosition readChessPosition (Scanner in){
         try {
-            String s = in.nextLine();
+            String s = in.nextLine().toLowerCase();
             char column = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
@@ -74,14 +71,17 @@ public class UI {
 
 
     public static void printBoard (ChessPiece[][] pieces){
+        System.out.println(ANSI_YELLOW + "  a b c d e f g h" + ANSI_RESET);
+
         for (int i = 0; i < pieces.length; i++){
-            System.out.print((pieces.length - i) + " ");
+            System.out.print( ANSI_YELLOW + (pieces.length - i) + ANSI_RESET + " ");
             for (int j = 0; j < pieces.length; j++){
                 printPiece(pieces[i][j], false);
             }
             System.out.println();
         }
-        System.out.print("  a b c d e f g h");
+
+        System.out.println(ANSI_YELLOW + "  a b c d e f g h" + ANSI_RESET);
     }
 
     public static void printBoard (ChessPiece[][] pieces, boolean[][] possibleMoves){
@@ -101,11 +101,11 @@ public class UI {
             System.out.print(ANSI_GREEN_BACKGROUND);
         }
         if(piece == null) {
-            System.out.print("-" + ANSI_RESET);
+            System.out.print( ANSI_YELLOW + "-" + ANSI_RESET);
         }else if (piece.getColor() == Color.WHITE){
                 System.out.print(ANSI_WHITE + piece + ANSI_RESET);
             } else {
-            System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+            System.out.print(ANSI_CYAN + piece + ANSI_RESET);
         }
         System.out.print(" ");
     }
@@ -120,7 +120,7 @@ public class UI {
         System.out.print(ANSI_RESET);
 
         System.out.print("Black: ");
-        System.out.print(ANSI_YELLOW);
+        System.out.print(ANSI_CYAN);
         System.out.println(Arrays.toString(black.toArray()));
         System.out.print(ANSI_RESET);
     }
