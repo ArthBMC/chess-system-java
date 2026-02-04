@@ -55,6 +55,6 @@ To showcase the system's logic and move validation, here is a full match demonst
 
 3. Run the application (using your IDE or terminal):
 
-# Example via terminal (depending on your folder structure)
+#### Example via terminal (depending on your folder structure)
    
    java application/Program
