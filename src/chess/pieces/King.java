@@ -15,11 +15,6 @@ public class King extends ChessPiece {
         this.chessMatch = chessMatch;
     }
 
-    private boolean canMove(Position position) {
-        ChessPiece p = (ChessPiece) getBoard().piece(position);
-        return p == null || p.getColor() != getColor();
-    }
-
     private boolean testRookCastling (Position position){
         ChessPiece p = (ChessPiece)getBoard().piece(position);
         return p instanceof Rook && p.getColor() == getColor() && p.getMoveCount() == 0;
@@ -32,48 +27,49 @@ public class King extends ChessPiece {
 
         //above
         p.setValues(position.getRow() - 1, position.getColumn());
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //below
         p.setValues(position.getRow() + 1, position.getColumn());
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //left
         p.setValues(position.getRow(), position.getColumn() - 1);
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //northwest
         p.setValues(position.getRow() + 1, position.getColumn() - 1);
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //southwest
         p.setValues(position.getRow() - 1, position.getColumn() - 1);
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //right
         p.setValues(position.getRow(), position.getColumn() + 1);
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
+
         //northeast
         p.setValues(position.getRow() + 1, position.getColumn() + 1);
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
         //southeast
         p.setValues(position.getRow() - 1, position.getColumn() + 1);
-        if (getBoard().positionExists(p) && canMove(p)) {
+        if (canMoveTo(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
 
@@ -102,7 +98,6 @@ public class King extends ChessPiece {
                 }
             }
         }
-
 
         return mat;
     }
