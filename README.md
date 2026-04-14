@@ -51,9 +51,13 @@ To showcase the system's logic and move validation, here is a full match demonst
 
 2. Navigate to the project folder:
 
-  cd chess-system-java
+  cd chess-system-java/src
 
-3. Run the application (using your IDE or terminal):
+3. Compile the Program.java using:
+
+  javac application/Program.java
+
+4. Run the application (using your IDE or terminal):
 
 #### Example via terminal (depending on your folder structure)
    
